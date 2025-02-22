@@ -2,6 +2,7 @@
 import React,{useEffect,useState} from "react";
 import { useRouter } from "next/navigation";
 import { appwriteConfig } from "@/appwrite/auth/authConfig";
+import GeneralLoader from "@/components/GeneralLoader";
 
 export default function ProtectedLayout({children}:{children:Readonly<{children:React.ReactNode}>}){
     const [loader,setloader]=useState<boolean>(true);
@@ -19,6 +20,6 @@ export default function ProtectedLayout({children}:{children:Readonly<{children:
             checkAuthStatus();
         })
     return(
-        loader ? <p>Loading ... </p> : <> {children} </>
+        loader ? <GeneralLoader/> : <> {children} </>
     )
 }

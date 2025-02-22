@@ -59,4 +59,14 @@ export class appwriteConfig {
         }
     }
 
+    async logout(){
+        try{
+            await account.deleteSession("current");
+        }
+        catch (err) {
+            console.log("error in logout : ",err)
+        }
+
+    }
+
 }

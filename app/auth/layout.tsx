@@ -2,6 +2,7 @@
 import { appwriteConfig } from "@/appwrite/auth/authConfig";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import GeneralLoader from "@/components/GeneralLoader";
 
 export default function AuthLayout({children}:{children:Readonly<{children:React.ReactNode}>}){
     const [loader,setloader]=useState<boolean>(true);
@@ -9,7 +10,7 @@ export default function AuthLayout({children}:{children:Readonly<{children:React
     async function checkAuthStatus(){
         const temp=appwriteConfig.getInstance();
         const status=await temp.isLoggedIn();
-        if(status===true){
+        if(status==true){
             router.replace("/home");
             return;
         }
@@ -19,6 +20,6 @@ export default function AuthLayout({children}:{children:Readonly<{children:React
         checkAuthStatus();
     })
     return(
-        loader ? <p>Loading ... </p> : <> {children} </>
+        loader ? <GeneralLoader/> : <> {children} </>
     )
 }
