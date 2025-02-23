@@ -1,4 +1,4 @@
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, Query,ID } from "appwrite";
 import { db, dbconfig } from "./dbConfig";
 export class userConfig{
     private static instance:userConfig;
@@ -12,14 +12,24 @@ export class userConfig{
         return this.instance;
     }
 
-    async listUserDetails(){
+    async listUserDetails(email:string){
         const userdetails=await db.listDocuments(
             dbconfig.DATABASE_ID,
             dbconfig.USER_COLLECTION_ID,
             [
-                Query.equal('email','sahayaksharma3@gmail.com')
+                Query.equal('email',email)
             ]
         )
         return userdetails;
+    }
+
+    async createNewUser(userName:string,userRole:string,fullName:string,phoneNumber:number,email:string){
+        const newuser=await db.createDocument(
+            dbconfig.DATABASE_ID,
+            dbconfig.USER_COLLECTION_ID,
+            ID.unique(),
+            {username:userName,user_role:userRole,full_name:fullName,phone_number:phoneNumber,email:email}
+        )
+        return newuser;
     }
 }

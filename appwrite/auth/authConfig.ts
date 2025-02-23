@@ -45,6 +45,7 @@ export class appwriteConfig {
 
     async getCurrentUser() {
         const currentUser = await account.get();
+        return currentUser.email;
         console.log("this is current user ", currentUser);
     }
 
