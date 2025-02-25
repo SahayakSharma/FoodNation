@@ -1,7 +1,7 @@
 import { Client, Account, ID } from "appwrite";
 
 export const client = new Client()
-    // .setEndpoint(process.env.APPWRITE_ENDPOINT || "")
+    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT || "")
     .setProject(process.env.APPWRITE_PROJECT_ID || " ")
 
 export const account = new Account(client);
@@ -40,7 +40,7 @@ export class appwriteConfig {
             return token.userId;
         }
         catch(err){
-            console.log("error in email otp login");
+            console.log("error in email otp login",err);
         }
     }
     async verifyEmailOTP(userid:string,secret:string){
@@ -52,7 +52,7 @@ export class appwriteConfig {
             return session;
         }
         catch(err){
-            console.log("error in otp validation")
+            console.log("error in otp validation",err)
         }
     }
     async loginUsingEmailPassword(email: string, password: string) {
