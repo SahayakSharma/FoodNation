@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import GeneralLoader from "@/components/GeneralLoader";
 
-export default function AuthLayout({children}:{children:Readonly<{children:React.ReactNode}>}){
+export default function AuthLayout({children}:{children:React.ReactNode}){
     const [loader,setloader]=useState<boolean>(true);
     const router=useRouter();
     async function checkAuthStatus(){

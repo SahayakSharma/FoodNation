@@ -1,6 +1,5 @@
 'use client'
 import { appwriteConfig } from "@/appwrite/auth/authConfig";
-import { userConfig } from "@/appwrite/db/userConfig";
 import { useUser } from "@/context/userContext";
 import { useRouter } from "next/navigation";
 import React from "react";
@@ -11,17 +10,12 @@ export default function Home(){
     async function handlelogout(){
         const temp=appwriteConfig.getInstance();
         await temp.logout()
-        .then((res)=>router.replace("/auth/signin"));
-        
-    }
-    function showuseremail(){
-        console.log(usercontext?.emailId);
-        console.log("users's role is : ",usercontext?.user_role)
+        .then((res)=>router.replace("/auth/signin"));     
     }
     
     return(
         <div>
-            <h1>Welcome : {usercontext?.username}</h1>
+            <h1>Welcome : {usercontext?.emailId}</h1>
             <button onClick={handlelogout}>Logout</button>
         </div>
     )

@@ -3,32 +3,20 @@ import React, { useContext, createContext, useState } from "react";
 type UserContextType = {
     userId?: string | null,
     emailId?: string | null,
-    full_name?: string | null,
-    phone_number?: number | null,
-    user_role?: string | null,
-    username?: string | null,
-    setUserData: (userId: string, emailId: string, full_name: string, phone_number: number, user_role: string, username: string) => void
+    setUserData: (userId: string, emailId: string) => void
 }
 const UserContext = createContext<UserContextType | null>(null);
 
 export const UserContextProvider = ({ children }: { children: React.ReactNode }) => {
     const [userId, setUserId] = useState<string | null>(null);
     const [emailId, setEmailId] = useState<string | null>(null);
-    const [full_name, setFullName] = useState<string | null>(null);
-    const [phone_number, setPhoneNumber] = useState<number | null>(null);
-    const [user_role, setUserRole] = useState<string | null>(null);
-    const [username, setUsername] = useState<string | null>(null);
 
-    function setUserData(userId: string, emailId: string, full_name: string, phone_number: number, user_role: string, username: string) {
+    function setUserData(userId: string, emailId: string) {
         setUserId(userId);
-        setUsername(username)
-        setFullName(full_name)
         setEmailId(emailId)
-        setPhoneNumber(phone_number)
-        setUserRole(user_role)
     }
     return (
-        <UserContext.Provider value={{ userId,emailId,full_name,phone_number,user_role,username,setUserData}}>
+        <UserContext.Provider value={{ userId,emailId,setUserData}}>
             {children}
         </UserContext.Provider>
     )
