@@ -1,9 +1,10 @@
 
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithRedirect, signInWithPopup } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from "./fbconfig";
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
+export const googleProvider=new GoogleAuthProvider();
 export class firebaseconfig {
   private static instance: firebaseconfig;
   private constructor() {
@@ -48,6 +49,10 @@ export class firebaseconfig {
       status:"400",
       message:"Invalid Credentials"
     }
+  }
+
+  async signinwithgoogle(){
+    await signInWithPopup(auth,googleProvider);
   }
   signout() {
     try {
