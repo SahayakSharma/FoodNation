@@ -1,19 +1,23 @@
 'use client'
-import { appwriteConfig } from "@/appwrite/auth/authConfig";
+import { firebaseconfig } from "@/config/firebase";
 import { useUser } from "@/context/userContext";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-export default function Home(){
-    const usercontext=useUser();
-    const router=useRouter();
-    async function handlelogout(){
-        const temp=appwriteConfig.getInstance();
-        await temp.logout()
-        .then((res)=>router.replace("/auth/signin"));     
+export default function Home() {
+    const usercontext = useUser();
+    const router = useRouter();
+    async function handlelogout() {
+        try {
+            const fb = firebaseconfig.getInstance();
+            const logout = fb.signout();
+        }
+        catch(err){
+            if(err instanceof Error) alert(err.message);
+        }
     }
-    
-    return(
+
+    return (
         <div>
             <h1>Welcome : {usercontext?.emailId}</h1>
             <button onClick={handlelogout}>Logout</button>
