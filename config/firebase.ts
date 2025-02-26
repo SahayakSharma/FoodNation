@@ -2,7 +2,7 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithRedirect, signInWithPopup } from "firebase/auth";
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from "./fbconfig";
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app)
 export const googleProvider=new GoogleAuthProvider();
 export class firebaseconfig {
@@ -81,10 +81,7 @@ export class firebaseconfig {
   getCurrentUser() {
     try {
       const user = auth.currentUser;
-      if (user) {
-        return user
-      }
-      return null
+      return user
     }
     catch {
       return null
