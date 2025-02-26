@@ -1,7 +1,5 @@
 'use client'
-
-import { auth, firebaseconfig } from "@/config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { firebaseconfig } from "@/config/firebase";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
@@ -38,8 +36,8 @@ export default function SignIn() {
     }
 
     async function signinwithgoogle() {
-
-
+        const fb=firebaseconfig.getInstance();
+        await fb.signinwithgoogle();
     }
     return (
         loading ? <div className="w-full h-screen flex items-center justify-center ">
@@ -58,7 +56,7 @@ export default function SignIn() {
                         if(error!="") seterror("");
                         setdetails(()=>({...details,email:e.target.value}))
                     }}/>
-                    <input type="text" placeholder="Email ID" className="w-full h-[40px] border-2 border-[#e4e4e4] p-[20px] mt-[50px] rounded-md" onChange={(e)=>{
+                    <input type="text" placeholder="Password" className="w-full h-[40px] border-2 border-[#e4e4e4] p-[20px] mt-[50px] rounded-md" onChange={(e)=>{
                         if(error!="") seterror("");
                         setdetails(()=>({...details,password:e.target.value}))
                     }}/>
