@@ -51,10 +51,9 @@ export class userDetails{
         try{
             const q=query(collection(db,"users"),where("email","==",email));
             const snapshot=await getDocs(q);
-            snapshot.forEach((data)=>console.log(data))
             return{
                 status:200,
-                snaps:snapshot.docs,
+                snaps:snapshot,
                 message:"document retrieved successfully"
             }
         }

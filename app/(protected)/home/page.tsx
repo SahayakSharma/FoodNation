@@ -1,4 +1,6 @@
 'use client'
+import Admin from "@/components/Protected/Admin";
+import Biller from "@/components/Protected/Biller";
 import { firebaseconfig } from "@/config/firebase";
 import { useUser } from "@/context/userContext";
 import { useRouter } from "next/navigation";
@@ -19,8 +21,9 @@ export default function Home() {
 
     return (
         <div>
-            <h1>Welcome : {usercontext?.emailId}</h1>
-            <button onClick={handlelogout}>Logout</button>
+            {
+                usercontext?.role==="admin" ? <Admin/> : <Biller/>
+            }
         </div>
     )
 }
