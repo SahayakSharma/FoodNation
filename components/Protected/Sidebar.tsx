@@ -1,12 +1,13 @@
 import React,{useState} from "react";
 import Image from "next/image";
 import SidebarContent from "./Sidebar/SidebarContent";
+import SidebarCollapsed from "./Sidebar/SidebarCollapsed";
 export default function Sidebar(){
     const [sidebarOpen, setsidebarOpen] = useState<boolean>(true);
     return(
         <div className={`${sidebarOpen ? 'w-[20%]' : 'w-[50px]'} h-full shadow-sm shadow-black flex flex-col justify-end py-[10px]`} >
                 {
-                    sidebarOpen ? <SidebarContent/> : null
+                    sidebarOpen ? <SidebarContent/> : <SidebarCollapsed/>
                 }
                 {
                     sidebarOpen ? 

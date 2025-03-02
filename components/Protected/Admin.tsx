@@ -1,16 +1,15 @@
 import { useUser } from "@/context/userContext";
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
 import Sidebar from "./Sidebar";
 import { ActiveContextProvider } from "@/context/activeContext";
-import Context from "./Context";
+import Content from "./Content";
 export default function Admin() {
     const user = useUser();
     return (
         <ActiveContextProvider>
             <div className="w-full h-screen flex overflow-hidden">
                 <Sidebar />
-                <Context/>
+                <Content/>
             </div>
         </ActiveContextProvider>
     )
